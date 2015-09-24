@@ -1,0 +1,55 @@
+<div layout="column" layout-margin>
+    <md-whiteframe class="md-whiteframe-z2">
+	    <h2>Sorting Performance</h2>
+	    <p>
+		    The following examples compare the relative performance of doing manual filtering & sorting in JavaScript compared to 
+		    allowing Lovefield to handle it for you. Note that in both instances the data is being pulled from Lovefield
+		    - this artificially increases the JavaScript result times but typically this difference in performance would
+		    rapidly be offset in real-world use since you're likely to filter and sort your data more frequently than perform a full retrieve.
+	    </p>
+	    
+	    <md-card class="md-whiteframe-z4">
+	        <md-toolbar class="md-primary md-hue-2 toolbar">
+	            <h5 class="toolbarText">Find by Primary Key</h5>
+	        </md-toolbar>
+	        <md-card-content>
+	           <md-button ng-click="Controller.findByPrimaryKey()" class="md-raised md-primary">Execute</md-button>
+	           <div layout="column" ng-show="Controller.findResults">
+	            <span><strong>JavaScript</strong> {{Controller.findResults.js.elapsed}} ms</span>
+	            <span><strong>Lovefield</strong> {{Controller.findResults.lf.elapsed}} ms</span>
+	           </div>
+	        </md-card-content>
+	    </md-card>
+	    
+	    <md-card class="md-whiteframe-z4">
+	        <md-toolbar class="md-primary md-hue-2 toolbar">
+	            <h5 class="toolbarText">Sort by Population</h5>
+	        </md-toolbar>
+	        <md-card-content>
+	            <md-button ng-click="Controller.sortByPopulationAsc()" class="md-raised md-primary">Execute</md-button>
+	            <div layout="column" ng-show="Controller.sortResults">
+	             <span><strong>JavaScript</strong> {{Controller.sortResults.js.elapsed}} ms</span>
+	             <span><strong>Lovefield</strong> {{Controller.sortResults.lf.elapsed}} ms</span>
+	            </div>
+	        </md-card-content>
+	    </md-card>
+	    
+	    <md-card class="md-whiteframe-z4">
+	        <md-toolbar class="md-primary md-hue-2 toolbar">
+	            <h5 class="toolbarText">Complex Search</h5>
+	        </md-toolbar>
+	        <md-card-content>
+	            <form>
+	                <label for="city">City contains</label><input type="text" name="city" ng-model="Controller.search.city"/><br />
+	                <label for="state">State contains</label><input type="text" name="state" ng-model="Controller.search.state"/><br />
+	                <label for="popGt">Population between</label><input type="number" name="popGt" ng-model="Controller.search.popGt" max="{{search.popLt}}"/><label for="popLt"> and </label><input type="number" name="popLt" ng-model="Controller.search.popLt" min="{{search.popGt}}"/><br/>
+	                <md-button ng-click="Controller.complexSearch()" class="md-raised md-primary">Execute</md-button>
+	            </form>
+	            <div layout="column" ng-show="Controller.complexResults">
+	                <span><strong>JavaScript</strong> {{Controller.complexResults.js.results}} results in {{Controller.complexResults.js.elapsed}} ms</span>
+	                <span><strong>Lovefield</strong> {{Controller.complexResults.lf.results}} results in {{Controller.complexResults.lf.elapsed}} ms</span>
+	            </div>
+	        </md-card-content>
+	    </md-card>
+	</md-whiteframe>
+</div>

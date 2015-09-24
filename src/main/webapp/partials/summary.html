@@ -1,0 +1,52 @@
+<div layout="column" layout-margin>
+    <md-whiteframe class="md-whiteframe-z2">
+        
+        <h3>Overview</h3>
+        <p>
+            This application shows off Lovefield, a Google product that provides a relational database in JavaScript. 
+            This enables easy and fast client-side management of large datasets.
+        </p>
+        
+        <h4>Usage</h4>
+        <ul>
+	        <li>This application uses a dataset of the 5000 largest cities in the United States. To peruse the dataset navigate to <a ui-sref="data">Data</a>.</li>
+	        <li>To try out Lovefield's query capabilities take a look at <a ui-sref="try">Try it Out</a>.</li>
+	        <li><a ui-sref="compare">Compare</a> provides a comparison of raw JavaScript vs. Lovefield performance in common scenarios.</li>
+        </ul>
+        
+        <h3>Implementation</h3>
+        <p>
+	        Behind the scenes Lovefield can be configured to use a variety of backing stores. 
+	        By default it uses browser-provided IndexedDB, but in-memory, Firebase, and WebSQL can be used instead.
+	    </p>
+        <p>
+            Wherever possible, Lovefield uses promises to promote asynchronous, non-blocking operations. Properly leveraged this enables
+            improved UI performance and reduced resource usage.
+        </p>
+        
+        <h3>Offline Capability</h3>
+        <p>
+	        Provided you configure Lovefield to operate against the browser-supplied IndexedDB you can write code that works even when the user
+	        has no network connectivity. This opens a whole new world for your applications, particularly when the data cycle is primarily
+	        driven around individual users rather than a collaborative cycle involving multiple users. By caching a snapshot of data your application
+	        can continue to work when the user loses connection. While offline your application can store changes and actions, triggering them once
+	        connectivity is reestablished. This increases your application's flexibility and value to your users at minimal development cost.
+	    </p>
+        
+        <h3>Limitations</h3>
+        <p>There are a number of limitations that are important to make note of:<p>
+        <ol>
+           <li>Lovefield has an internal limit on the total number of rows across all tables of approximately Number.MAX_SAFE_INTEGER (depending on your browser ~ (2<sup>53</sup> - 1) or 9,007,199,254,740,991). While this is a big number it should not be taken for granted - large datasets should be managed by a true database.</li>
+           <li>Lovefield likely won't work out of the box in server-side NodeJS. This is mainly due to Lovefield being a wrapper over browser-supplied IndexedDB. You might be able to use the in-memory DB mode in Node, but I have not verified this.</li>
+           <li>As of the creation of this app Lovefield has not yet fully implemented Foreign Keys. These are part of the development roadmap so they should gain additional support over the coming months.</li>
+        </ol>
+        
+        <h3>Performance</h3>
+        <p>
+            Roughly speaking, Lovefield supplies query performance analagous to writing custom query code yourself. This means you save tons of time and maintenance
+            overhead while gaining a reliable and intuitive query interface. Where it shines is when you are searching for a single item by known ID - Lovefield can be configured to maintain indices on almost any combination of fields which makes random-access incredibly fast compared to iterating a dataset yourself.
+            Finally, by leveraging IndexedDB you gain the benefits of reduced memory usage as well as persistent data storage (on a per-browser basis) which can drastically
+            improve performance and user experience.
+        </p>
+    </md-whiteframe>
+</div>

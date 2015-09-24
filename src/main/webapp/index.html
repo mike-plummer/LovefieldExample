@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html lang="en" ng-app="lovefieldApp">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Relational data management in the browser with Lovefield.">
+
+    <title>Lovefield Example</title>
+
+    <link rel="stylesheet" href="/lovefield/webjars/angular-material/0.11.0/angular-material.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
+    <link rel="stylesheet" href="/lovefield/webjars/font-awesome/4.4.0/css/font-awesome.css">
+    <link rel="stylesheet" href="/lovefield/webjars/angular-ui-grid/3.0.6/ui-grid.css">
+    <link rel="stylesheet" href="css/app.css">
+
+    <script src="/lovefield/webjars/angularjs/1.4.4/angular.js"></script>
+    <script src="/lovefield/webjars/angularjs/1.4.4/angular-resource.js"></script>
+    <script src="/lovefield/webjars/angularjs/1.4.4/angular-animate.js"></script>
+    <script src="/lovefield/webjars/angularjs/1.4.4/angular-aria.js"></script>
+    <script src="/lovefield/webjars/angular-material/0.11.0/angular-material.js"></script>
+    <script src="/lovefield/webjars/angular-ui-router/0.2.15/angular-ui-router.js"></script>
+    <script src="/lovefield/webjars/angular-ui-grid/3.0.6/ui-grid.js"></script>
+    <script src="https://cdn.jsdelivr.net/lovefield/2.0.63/lovefield.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/database.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/directives.js"></script>
+    <script src="js/interceptors.js"></script>
+</head>
+<body layout="column" layout-fill>
+       <header>
+        <md-toolbar class="md-menu-toolbar md-primary">
+            <md-toolbar class="md-primary md-hue-2 toolbar">
+                <h3 class="toolbarText">Lovefield Example</h3>
+            </md-toolbar>
+            <div layout="row">
+                <div>
+                    <md-menu-bar>
+                        <md-button ui-sref="summary">Summary</md-button>
+                        <md-button ui-sref="data">Data</md-button>
+                        <md-button ui-sref="try">Try it Out</md-button>
+                        <md-button ui-sref="compare">Compare</md-button>
+                    <md-menu-bar>
+                </div>
+            </div>
+        </md-toolbar>
+        <md-divider></md-divider>
+       </header>
+       <md-content flex>
+        <div ui-view></div>
+       </md-content>
+       <footer>
+           <md-toolbar class="md-primary md-hue-2 toolbar">
+               <h5 class="toolbarText"></h5>
+           </md-toolbar>
+       </footer>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<div layout="column" layout-margin>
+    <md-whiteframe class="md-whiteframe-z2">
+	    <md-button class="md-fab md-primary md-mini" ng-click="Controller.addRow()"><i class="fa fa-plus"></i></md-button>
+	    <form novalidate name="predicateForm">
+	        <predicate-row ng-repeat="predicate in Controller.predicateRows track by $index"></predicate-row>
+	        <div ng-show="!predicateForm.$valid">
+	            <span class="error" ng-show="predicateForm.grouping.$error.required">At least one predicate is missing a grouping!<br/></span>
+	            <span class="error" ng-show="predicateForm.field.$error.required">At least one predicate doesn't specify a field!<br/></span>
+	            <span class="error" ng-show="predicateForm.operator.$error.required">At least one predicate doesn't specify an operator!<br/></span>
+	            <span class="error" ng-show="predicateForm.value.$error.required">At least one predicate is missing a value!</br></span>
+	            <span class="error" ng-show="predicateForm.value.$error.pattern">At least one predicate has an invalid value!</span>
+	        </div>
+	        <md-button class="md-raised md-primary" ng-click="Controller.query()" ng-disabled="!predicateForm.$valid">Query</md-button>
+	    </form>
+	    <strong>Results:</strong> {{ Controller.gridOptions.data.length }}
+	    <strong>Query time:</strong> {{ Controller.elapsed }} ms
+	    <br />
+	    <div ui-grid="Controller.gridOptions"></div>
+	</md-whiteframe>
+</div>

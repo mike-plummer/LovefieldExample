@@ -1,2 +1,13 @@
 # LovefieldExample
-Example of relational data management in the browser with Lovefield.
+
+## Usage
+After cloning the repo, ensure you have Maven 3+ installed by running `mvn version` in a command prompt. Grab it from (Apache)[https://maven.apache.org/] if needed. 
+From a command prompt, enter the LovefieldExample directory you cloned and execute `mvn spring-boot:run`. After a short wait you should see something like the following: `Started Application in 2.542 seconds (JVM running for 7.119)`. At this point, open a browser tab and navigate to http://localhost:8080/lovefield.
+To quit, type `Ctrl-C` in the command prompt.
+
+## Data
+City data: http://ezlocal.com/blog/post/Top-5000-US-Cities-by-Population.aspx
+
+## Licensing
+This code is provided under the terms of the MIT license: basically you're free to do whatever you want with it, but no guarantees are made to its validity, stability, or safety. All works referenced by or utilized by this project are the property of their respective copyright holders and retain licensing that may be more restrictive.
+
