@@ -1,20 +1,39 @@
 <div layout="column" layout-margin>
-    <md-whiteframe class="md-whiteframe-z2">
-	    <md-button class="md-fab md-primary md-mini" ng-click="Controller.addRow()"><i class="fa fa-plus"></i></md-button>
-	    <form novalidate name="predicateForm">
-	        <predicate-row ng-repeat="predicate in Controller.predicateRows track by $index"></predicate-row>
-	        <div ng-show="!predicateForm.$valid">
-	            <span class="error" ng-show="predicateForm.grouping.$error.required">At least one predicate is missing a grouping!<br/></span>
-	            <span class="error" ng-show="predicateForm.field.$error.required">At least one predicate doesn't specify a field!<br/></span>
-	            <span class="error" ng-show="predicateForm.operator.$error.required">At least one predicate doesn't specify an operator!<br/></span>
-	            <span class="error" ng-show="predicateForm.value.$error.required">At least one predicate is missing a value!</br></span>
-	            <span class="error" ng-show="predicateForm.value.$error.pattern">At least one predicate has an invalid value!</span>
-	        </div>
-	        <md-button class="md-raised md-primary" ng-click="Controller.query()" ng-disabled="!predicateForm.$valid">Query</md-button>
-	    </form>
-	    <strong>Results:</strong> {{ Controller.gridOptions.data.length }}
-	    <strong>Query time:</strong> {{ Controller.elapsed }} ms
-	    <br />
-	    <div ui-grid="Controller.gridOptions"></div>
+	<md-whiteframe class="md-whiteframe-z2">
+		<h2>Custom Queries</h2>
+		<p>Use the below controls to construct simple or complex queries
+			against the City dataset. These query predicates are combined and
+			passed off to Lovefield to execute using a very efficient engine -
+			there's only about 20 lines of Javascript that had to be written to
+			support any degree of query complexity here. A few notes:</p>
+		<ol>
+			<li>The MATCHES operator expects a JavaScript-style regex.</li>
+			<li>Order of operations between predicates is very simplistic
+				just for the sake of ease-of-use in this UI (Lovefield supports just
+				about any custom strategy) - anytime you're adding a new predicate,
+				basically imagine that the set of all predicates above it is wrapped
+				in parentheses. For example, P1 -> OR P2 -> AND P3 -> OR P4
+				effectively resolves to ((P1 OR P2) AND P3) OR P4.</li>
+		</ol>
+		<md-button class="md-fab md-primary md-mini"
+			ng-click="Controller.addRow()">
+		<i class="fa fa-plus"></i></md-button>
+		<form novalidate name="predicateForm">
+			<md-list> <predicate-row
+				ng-repeat="predicate in Controller.predicateRows track by $index"></predicate-row>
+			</md-list>
+			<div ng-show="!predicateForm.$valid">
+				<span class="error" ng-show="predicateForm.grouping.$error.required">At least one predicate is missing a grouping!<br />
+				</span> <span class="error" ng-show="predicateForm.field.$error.required">At least one predicate doesn't specify a field!<br />
+				</span> <span class="error" ng-show="predicateForm.operator.$error.required">At least one predicate doesn't specify an operator!<br />
+				</span> <span class="error" ng-show="predicateForm.value.$error.required">At least one predicate is missing a value!</br>
+				</span> <span class="error" ng-show="predicateForm.value.$error.pattern">At least one predicate has an invalid value!</span>
+			</div>
+			<md-button class="md-raised md-primary" ng-click="Controller.query()"
+				ng-disabled="!predicateForm.$valid">Query</md-button>
+		</form>
+		<strong>Results:</strong> {{ Controller.gridOptions.data.length }} 
+		<strong>Query time:</strong> {{ Controller.elapsed }} ms <br />
+		<div ui-grid="Controller.gridOptions"></div>
 	</md-whiteframe>
 </div>

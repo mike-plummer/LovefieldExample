@@ -20,11 +20,6 @@ lovefieldApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider', '$
      * Setup Angular UI Router
      */
 
-    //When no routes are matched, send to default
-    $urlRouterProvider.otherwise("/summary");
-
-    // Setup all states (one per cache type). Each one sends the user to the same
-    // template but configures a different controller. Angular is awesome!!
     $stateProvider
     .state('summary', {
         url: "/summary",
@@ -46,6 +41,8 @@ lovefieldApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider', '$
         templateUrl: "partials/compare.html",
         controller: 'ComparisonController as Controller'
     });
+    //When no routes are matched, send to default
+    $urlRouterProvider.otherwise("/summary");
 
     /*
      * End UI Router configuration.
