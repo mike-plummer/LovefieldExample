@@ -43,12 +43,22 @@
         
         <!-- Webjars -->
         <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>angularjs</artifactId>
-            <version>1.4.4</version>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>angular-resource</artifactId>
+            <version>1.4.6</version>
         </dependency>
         <dependency>
-            <groupId>org.webjars</groupId>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>angular-animate</artifactId>
+            <version>1.4.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>angular-aria</artifactId>
+            <version>1.4.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
             <artifactId>angular-ui-router</artifactId>
             <version>0.2.15</version>
         </dependency>
@@ -63,7 +73,7 @@
             <version>4.4.0</version>
         </dependency>
         <dependency>
-            <groupId>org.webjars</groupId>
+            <groupId>org.webjars.bower</groupId>
             <artifactId>angular-material</artifactId>
             <version>0.11.0</version>
         </dependency>

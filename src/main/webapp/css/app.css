@@ -18,3 +18,17 @@ html {
 .error {
     color: red;
 }
+
+.footer {
+	font-size: 12px;
+}
+
+.footer-icon {
+	font-size: 30px;
+	margin: 10px 10px 5px 10px;
+	color: white;
+}
+
+.footer a {
+	color: white;
+}

@@ -14,8 +14,7 @@ angular.module('database', ['services'])
       .addColumn('state', lf.Type.STRING)
       .addColumn('population', lf.Type.NUMBER)
       .addPrimaryKey(['id'])
-      .addIndex('idxName', ['name'], false, lf.Order.DESC)
-      .addIndex('idxState', ['state'], false, lf.Order.DESC);
+      .addIndex('idxPopulationAsc', ['population'], false, lf.Order.ASC);
 
     // Build a deferred to handle resolving the handle to the database since it may take some time for it to initialize and load data.
     var database = $q.defer();
@@ -36,15 +35,15 @@ angular.module('database', ['services'])
             });
             // Add all the rows we just built to the database.
             db.insertOrReplace().into(Cities).values(cityRows).exec().then(
-                    function() {
-                        console.log('Data loaded');
-                        // Assuming we succeeded in loading then go ahead and make the database available for use
-                        database.resolve(db);
-                    }, 
-                    function(error) {
-                        console.log('Error loading database:' + error);
-                        database.reject(error);
-                    }
+                function() {
+                    console.log('Data loaded');
+                    // Assuming we succeeded in loading then go ahead and make the database available for use
+                    database.resolve(db);
+                }, 
+                function(error) {
+                    console.log('Error loading database:' + error);
+                    database.reject(error);
+                }
             );
         }, function(){ console.log('Error retrieving cities'); });
     }, function() {database.reject('Error');});
@@ -75,16 +74,95 @@ angular.module('database', ['services'])
         getConnection: function() {
             return database.promise;
         },
-        // Returns a promise that eventually resolves into a listing of all rows from the specified database table.
-        list: function(tableName) {
+        // Returns a promise that will resolve to the matching City or null if not found
+        findByPrimaryKey: function(primaryKey) {
+            // Get database connection
             return $q.when(database.promise, function(db) {
-                var table = db.getSchema().table(tableName);
+                var Cities = db.getSchema().table('Cities');
+                // Construct custom query to search for city by ID
+                return db.select().from(Cities).where(Cities.id.eq(primaryKey)).exec();
+            }).then(function(queryResult) {
+                return queryResult;
+            }, function(error) {
+                console.log('Error:' + error);
+            });
+        },
+        // Returns a promise that resolves a listing of all rows from the specified database table.
+        list: function() {
+            return $q.when(database.promise, function(db) {
+                var table = db.getSchema().table('Cities');
                 // Execute a SELECT * FROM Cities; query
                 return db.select().from(table).exec();
             }).then(function(queryResult){
                 // Resolve the promise
                 return queryResult;
             });
+        },
+        // Returns a promise that resolves to a listing of all Cities ordered by ascending population
+        sortByPopulationAsc: function() {
+        	return $q.when(database.promise, function(db) {
+                var Cities = db.getSchema().table('Cities');
+                // Construct custom query to sort cities
+                return db.select().from(Cities).orderBy(Cities.population, lf.Order.ASC).exec();
+            }).then(function(queryResult) {
+          	  	return queryResult;
+            }, function(error) {
+                console.log('Error:' + error);
+            });
+        },
+        // Returns a promise that resolves to the results of a query using the supplied predicate
+        query: function(predicate) {
+        	if (!predicate) {
+            	return this.list();
+            }
+        	return $q.when(database.promise, function(db) {
+                var Cities = db.getSchema().table('Cities');
+                // Construct query with predicate
+                return db.select().from(Cities).where(predicate).exec();
+            }).then(function(queryResult){
+            	return queryResult;
+            }, function(error){
+                console.log('Error:' + error);
+            });
+        },
+        // Constructs a predicate using the supplied values - all parameters are required except for 'negate'
+        constructPredicate: function(table, fieldName, operator, value, negate) {
+        	var predicate = null;
+            // Find the field the user selected
+            var field = table[fieldName];
+            // Default the queried value if appropriate
+            if (value === undefined || value === null) {
+                value = '';
+            }
+            // Pick an appropriate predicate function based on selected operator
+            switch (operator) {
+                case '=':
+                    predicate = field.eq(value);
+                    break;
+                case '<':
+                    predicate = field.lt(value);
+                    break;
+                case '<=':
+                    predicate = field.lte(value);
+                    break;
+                case '>':
+                    predicate = field.gt(value);
+                    break;
+                case '>=':
+                    predicate = field.gte(value);
+                    break;
+                case 'MATCHES':
+                    predicate = field.match(value);
+                    break;
+                case 'IS NULL':
+                    predicate = field.isNull(value);
+                    break;
+            }
+            // If user selected the negation checkbox, negate the predicate
+            if (negate) {
+                predicate = lf.op.not(predicate);
+            }
+            return predicate;
         }
     }
 }

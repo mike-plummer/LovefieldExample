@@ -3,15 +3,9 @@
 /* App Module */
 
 var lovefieldApp = angular.module('lovefieldApp', [
-                                                   'ngMaterial',
-                                                   'ui.router',
-                                                   'ui.grid',
-                                                   'services',
-                                                   'controllers',
-                                                   'database',
-                                                   'directives',
-                                                   'interceptors'
-                                                   ]);
+	'ngMaterial', 'ui.router', 'ui.grid', 'services',
+    'controllers', 'database', 'directives', 'interceptors'
+	]);
 
 lovefieldApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider', '$mdThemingProvider',
                      function($httpProvider, $stateProvider, $urlRouterProvider, $mdThemingProvider) {
@@ -21,26 +15,26 @@ lovefieldApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider', '$
      */
 
     $stateProvider
-    .state('summary', {
-        url: "/summary",
-        templateUrl: "partials/summary.html",
-        controller: 'SummaryController as Controller'
-    })
-    .state('data', {
-        url: "/data",
-        templateUrl: "partials/data.html",
-        controller: 'DataController as Controller'
-    })
-    .state('try', {
-        url: "/try",
-        templateUrl: "partials/try.html",
-        controller: 'TryController as Controller'
-    })
-    .state('compare', {
-        url: "/compare",
-        templateUrl: "partials/compare.html",
-        controller: 'ComparisonController as Controller'
-    });
+	    .state('summary', {
+	        url: "/summary",
+	        templateUrl: "partials/summary.html",
+	        controller: 'SummaryController as Controller'
+	    })
+	    .state('data', {
+	        url: "/data",
+	        templateUrl: "partials/data.html",
+	        controller: 'DataController as Controller'
+	    })
+	    .state('try', {
+	        url: "/try",
+	        templateUrl: "partials/try.html",
+	        controller: 'TryController as Controller'
+	    })
+	    .state('compare', {
+	        url: "/compare",
+	        templateUrl: "partials/compare.html",
+	        controller: 'ComparisonController as Controller'
+	    });
     //When no routes are matched, send to default
     $urlRouterProvider.otherwise("/summary");
 
@@ -53,9 +47,9 @@ lovefieldApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider', '$
 
     // Theming
     $mdThemingProvider.theme('myTheme', 'default')
-    .primaryPalette('blue')
-    .accentPalette('light-blue')
-    .warnPalette('red')
-    .backgroundPalette('grey');
+      .primaryPalette('blue')
+      .accentPalette('light-blue')
+      .warnPalette('red')
+      .backgroundPalette('grey');
     $mdThemingProvider.setDefaultTheme('myTheme');
 }]);

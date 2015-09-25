@@ -7,19 +7,18 @@
 
     <title>Lovefield Example</title>
 
-    <link rel="stylesheet" href="/lovefield/webjars/angular-material/0.11.0/angular-material.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
-    <link rel="stylesheet" href="/lovefield/webjars/font-awesome/4.4.0/css/font-awesome.css">
-    <link rel="stylesheet" href="/lovefield/webjars/angular-ui-grid/3.0.6/ui-grid.css">
+    <link rel="stylesheet" href="/lovefield/webjars/angular-material/0.11.0/angular-material.min.css">
+    <link rel="stylesheet" href="/lovefield/webjars/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/lovefield/webjars/angular-ui-grid/3.0.6/ui-grid.min.css">
     <link rel="stylesheet" href="css/app.css">
 
-    <script src="/lovefield/webjars/angularjs/1.4.4/angular.js"></script>
-    <script src="/lovefield/webjars/angularjs/1.4.4/angular-resource.js"></script>
-    <script src="/lovefield/webjars/angularjs/1.4.4/angular-animate.js"></script>
-    <script src="/lovefield/webjars/angularjs/1.4.4/angular-aria.js"></script>
-    <script src="/lovefield/webjars/angular-material/0.11.0/angular-material.js"></script>
-    <script src="/lovefield/webjars/angular-ui-router/0.2.15/angular-ui-router.js"></script>
-    <script src="/lovefield/webjars/angular-ui-grid/3.0.6/ui-grid.js"></script>
+    <script src="/lovefield/webjars/angular/1.4.6/angular.min.js"></script>
+    <script src="/lovefield/webjars/angular-resource/1.4.6/angular-resource.min.js"></script>
+    <script src="/lovefield/webjars/angular-animate/1.4.6/angular-animate.min.js"></script>
+    <script src="/lovefield/webjars/angular-aria/1.4.6/angular-aria.min.js"></script>
+    <script src="/lovefield/webjars/angular-material/0.11.0/angular-material.min.js"></script>
+    <script src="/lovefield/webjars/angular-ui-router/0.2.15/release/angular-ui-router.min.js"></script>
+    <script src="/lovefield/webjars/angular-ui-grid/3.0.6/ui-grid.min.js"></script>
     <script src="https://cdn.jsdelivr.net/lovefield/2.0.63/lovefield.min.js"></script>
     <script src="js/app.js"></script>
     <script src="js/services.js"></script>
@@ -29,7 +28,7 @@
     <script src="js/interceptors.js"></script>
 </head>
 <body layout="column" layout-fill>
-       <header>
+    <header>
         <md-toolbar class="md-menu-toolbar md-primary">
             <md-toolbar class="md-primary md-hue-2 toolbar">
                 <h3 class="toolbarText">Lovefield Example</h3>
@@ -46,13 +45,19 @@
             </div>
         </md-toolbar>
         <md-divider></md-divider>
-       </header>
+    </header>
        <md-content flex>
-        <div ui-view></div>
+           <div ui-view></div>
        </md-content>
        <footer>
-           <md-toolbar class="md-primary md-hue-2 toolbar">
-               <h5 class="toolbarText"></h5>
+           <md-toolbar class="md-primary md-hue-2 toolbar footer" layout-align="center center" layout="column">
+               <span layout="row">
+	               <a href="https://twitter.com/plummer_mike"><i class="fa fa-twitter footer-icon"></i></a>
+	               <a href="https://github.com/mike-plummer/WeatherBrowser"><i class="fa fa-github footer-icon"></i></a>
+	               <a href="mailto:mike.plummer@objectpartners.com"><i class="fa fa-envelope footer-icon"></i></a>
+               </span>
+               <span>Coded with pride in Omaha, Nebraska</span>
+               <span>2015 Mike Plummer | <a href="https://www.objectpartners.com">Object Partners, Inc.</a></span>
            </md-toolbar>
        </footer>
 </body>
