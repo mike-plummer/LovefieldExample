@@ -27,7 +27,7 @@ angular.module('database', ['services'])
         // Hit the server for City data
         CityService.list(null, function(cities) {
             // Convert each returned City object into a City database row. Since the object's fields exactly
-            // match the expected column names Lovefield handles this for us. If there is any mismatch then 
+            // match the expected column names Lovefield handles this for us. If there is any mismatch then
             // additional mapping code is necessary in the 'createRow(..)' call.
             var cityRows = [];
             cities.forEach(function(city) {
@@ -39,7 +39,7 @@ angular.module('database', ['services'])
                     console.log('Data loaded');
                     // Assuming we succeeded in loading then go ahead and make the database available for use
                     database.resolve(db);
-                }, 
+                },
                 function(error) {
                     console.log('Error loading database:' + error);
                     database.reject(error);
@@ -69,7 +69,7 @@ angular.module('database', ['services'])
             });
         },
         // Returns the promise for the database deferred. Until this resolves we know the database is still initializing and
-        // loading data so other functions should wait. This handle allows consumers to construct custom queries or do 
+        // loading data so other functions should wait. This handle allows consumers to construct custom queries or do
         // pretty much anything else besides modify the schema.
         getConnection: function() {
             return database.promise;

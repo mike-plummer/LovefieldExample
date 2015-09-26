@@ -1,5 +1,5 @@
-html {
-    font-family: RobotoDraft,"Helvetica Neue",sans-serif
+.menubar {
+    background-color: #f6f6f6;
 }
 
 .toolbar {
@@ -23,12 +23,12 @@ html {
 	font-size: 12px;
 }
 
-.footer-icon {
-	font-size: 30px;
-	margin: 10px 10px 5px 10px;
+.footer a {
 	color: white;
 }
 
-.footer a {
+.footer-icon {
+	font-size: 30px;
+	margin: 10px 10px 5px 10px;
 	color: white;
 }

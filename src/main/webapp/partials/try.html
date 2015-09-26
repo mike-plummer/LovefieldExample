@@ -1,5 +1,5 @@
 <div layout="column" layout-margin>
-	<md-whiteframe class="md-whiteframe-z2">
+	<md-whiteframe class="md-whiteframe-z2" layout-padding>
 		<h2>Custom Queries</h2>
 		<p>Use the below controls to construct simple or complex queries
 			against the City dataset. These query predicates are combined and
@@ -23,16 +23,16 @@
 				ng-repeat="predicate in Controller.predicateRows track by $index"></predicate-row>
 			</md-list>
 			<div ng-show="!predicateForm.$valid">
-				<span class="error" ng-show="predicateForm.grouping.$error.required">At least one predicate is missing a grouping!<br />
-				</span> <span class="error" ng-show="predicateForm.field.$error.required">At least one predicate doesn't specify a field!<br />
-				</span> <span class="error" ng-show="predicateForm.operator.$error.required">At least one predicate doesn't specify an operator!<br />
-				</span> <span class="error" ng-show="predicateForm.value.$error.required">At least one predicate is missing a value!</br>
-				</span> <span class="error" ng-show="predicateForm.value.$error.pattern">At least one predicate has an invalid value!</span>
+				<span class="error" ng-show="predicateForm.grouping.$error.required">At least one predicate is missing a grouping!<br /></span>
+				<span class="error" ng-show="predicateForm.field.$error.required">At least one predicate doesn't specify a field!<br /></span>
+				<span class="error" ng-show="predicateForm.operator.$error.required">At least one predicate doesn't specify an operator!<br /></span>
+				<span class="error" ng-show="predicateForm.value.$error.required">At least one predicate is missing a value!</br></span>
+				<span class="error" ng-show="predicateForm.value.$error.pattern">At least one predicate has an invalid value!</span>
 			</div>
 			<md-button class="md-raised md-primary" ng-click="Controller.query()"
 				ng-disabled="!predicateForm.$valid">Query</md-button>
 		</form>
-		<strong>Results:</strong> {{ Controller.gridOptions.data.length }} 
+		<strong>Results:</strong> {{ Controller.gridOptions.data.length }}
 		<strong>Query time:</strong> {{ Controller.elapsed }} ms <br />
 		<div ui-grid="Controller.gridOptions"></div>
 	</md-whiteframe>

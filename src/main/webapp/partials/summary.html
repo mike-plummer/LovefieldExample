@@ -1,24 +1,24 @@
 <div layout="column" layout-margin>
-    <md-whiteframe class="md-whiteframe-z2">
-        
+    <md-whiteframe class="md-whiteframe-z2" layout-padding>
+
         <h3>Overview</h3>
         <p>
-            This application shows off Lovefield, a Google product that provides a relational database in JavaScript. 
+            This application shows off Lovefield, a Google product that provides a relational database in JavaScript.
             This enables easy and fast client-side management of large datasets.
         </p>
-        
+
         <h4>Usage</h4>
         <ul>
 	        <li>This application uses a dataset of the 5000 largest cities in the United States. To peruse the dataset navigate to <a ui-sref="data">Data</a>.</li>
 	        <li>To try out Lovefield's query capabilities take a look at <a ui-sref="try">Try it Out</a>.</li>
 	        <li><a ui-sref="compare">Compare</a> provides a comparison of raw JavaScript vs. Lovefield performance in common scenarios.</li>
         </ul>
-        
+
         <h3>Implementation</h3>
         <p>
 	        Data is loaded into Lovefield once on initialization. For all comparison operations all JS-only operations perform a service call to acquire data
 	        then use custom logic to sort/filter the data as necessary. Lovefield operations acquire data from within Lovefield and use its built-in sort/filter
-	        capabilities. While it is true that the service call artificially inflates Javascript performance it more accurately reflects common scenarios 
+	        capabilities. While it is true that the service call artificially inflates Javascript performance it more accurately reflects common scenarios
 	        since manually storing large amounts of data in-memory in Javascript is generally frowned upon.
         </p>
     </md-whiteframe>

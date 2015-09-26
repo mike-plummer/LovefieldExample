@@ -4,37 +4,47 @@
 	        <h5 class="toolbarText">Predicate {{$index + 1}}</h5>
 	    </md-toolbar>
 	    <md-card-content layout="row">
-	        <span>
-		        <select name="grouping"
-		                ng-hide="$index === 0"
-		                ng-model="predicate.grouping"
-		                ng-required="$index !== 0"
-		                ng-options="grouping.name for grouping in Controller.groupings track by grouping.groupingFunction">
-		        </select>
-		        <label  for="not">NOT</label>
-		        <input  name="not" 
-		                type="checkbox" 
-		                ng-model="predicate.not"/>
-		        
-		        <label  for="field">Field</label>
-		        <select name="field"
-		                ng-model="predicate.field"
-		                required
-		                ng-options="field.name for field in Controller.fields">
-		        </select>
-		        
-		        <select name="operator"
-		                ng-model="predicate.operator"
-		                required>
-		                <option ng-repeat="operator in predicate.field.operators">{{operator}}</option>
-		        </select>
-		        
-		        <label  for="value">Value</label>
-		        <input  type="{{predicate.field.type}}" 
-		                name="value" 
-		                ng-model="predicate.value" 
-		                ng-required="predicate.field.valueRequired"/>
-		    </span>
+				<md-input-container ng-hide="$index === 0">
+					<label>Grouping</label>
+			        <md-select name="grouping"
+			                ng-model="predicate.grouping"
+			                ng-required="$index !== 0">
+						<md-option ng-repeat="grouping in Controller.groupings" ng-value="grouping.groupingFunction">{{grouping.name}}</md-option>
+					</md-select>
+				</md-input-container>
+
+				<md-input-container>
+		        	<label>Field</label>
+			        <md-select name="field"
+			                ng-model="predicate.field"
+			                required>
+							<md-option ng-repeat="field in Controller.fields" ng-value="field">{{field.name}}</md-option>
+			        </md-select>
+				</md-input-container>
+
+				<md-input-container>
+			        <label>NOT</label>
+			        <input name="not"
+			               type="checkbox"
+			               ng-model="predicate.not"/>
+				</md-input-container>
+
+				<md-input-container>
+					<label>Operator</label>
+			        <md-select name="operator"
+			                ng-model="predicate.operator"
+			                required>
+			                <md-option ng-repeat="operator in predicate.field.operators">{{operator}}</md-option>
+			        </md-select>
+				</md-input-container>
+
+				<md-input-container>
+			        <label>Value</label>
+			        <input  type="{{predicate.field.type}}"
+			                name="value"
+			                ng-model="predicate.value"
+			                ng-required="predicate.field.valueRequired"/>
+				</md-input-container>
 	        <div flex></div>
 	        <md-button class="md-fab md-warn md-mini" ng-click="Controller.deleteRow($index)"><i class="fa fa-times"></i></md-button>
 	    </md-card-content>

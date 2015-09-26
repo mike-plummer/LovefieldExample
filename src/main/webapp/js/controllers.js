@@ -26,19 +26,19 @@ angular.module('controllers', ['database'])
       vm.gridOptions = {
               'columnDefs': [{name:'city', field:'name'}, {name:'state'}, {name:'population'}]
       };
-      
+
       // Maintain list of user-entered predicates to build custom query
       vm.predicateRows = [];
-      
+
       // Allowable selections for grouping subsequent predicates with one another (AND/OR)
       vm.groupings = [{name: 'AND', groupingFunction: lf.op.and},
                       {name: 'OR', groupingFunction: lf.op.or}];
-      
+
       // Allowable selections for the field a predicate can query on. Defines applicable value datatype, operators, and whether value is required
-      vm.fields = [{name:'City', column:'name', type:'text', valueRequired:false, operators: ['=', 'MATCHES', 'IS NULL']}, 
-                   {name:'State', column:'state', type:'text', valueRequired:false, operators: ['=', 'MATCHES', 'IS NULL']}, 
+      vm.fields = [{name:'City', column:'name', type:'text', valueRequired:false, operators: ['=', 'MATCHES', 'IS NULL']},
+                   {name:'State', column:'state', type:'text', valueRequired:false, operators: ['=', 'MATCHES', 'IS NULL']},
                    {name:'Population', column:'population', type:'number', valueRequired:true, operators: ['=', '<', '<=', '>', '>=', 'IS NULL']}];
-      
+
       // When user clicks '+' button add new row to predicateRows
       vm.addRow = function() {
           vm.predicateRows.push({});
@@ -47,7 +47,7 @@ angular.module('controllers', ['database'])
       vm.deleteRow = function(index) {
           vm.predicateRows.splice(index, 1);
       };
-      
+
       // When user clicks 'Query' button build predicates and execute query
       vm.query = function() {
           vm.results = null;
@@ -64,7 +64,7 @@ angular.module('controllers', ['database'])
               vm.predicateRows.forEach(function(row){
             	  // Convert user's entries into a Predicate
                   var predicate = Database.constructPredicate(Cities, row.field.column, row.operator, row.value, row.not);
-                  
+
                   // If this isn't the first predicate being built attempt to associate this predicate with the previous
                   // by building a compound predicate using a grouping function
                   if (row.grouping && aggregatePredicate != null) {
@@ -92,13 +92,13 @@ angular.module('controllers', ['database'])
     	  // Pick a primary key halfway through the dataset to search for
           var primaryKey = 2500;
           vm.findResults = {};
-          
+
           // Search using custom Javascript logic
           var jsStart = new Date().getTime();
           $q.when(JSCityService.findByPrimaryKey(primaryKey), function(result) {
         	  vm.findResults['js'] = {'elapsed': (new Date().getTime() - jsStart)};
           });
-          
+
           // Search using Lovefield
           var lfStart = new Date().getTime();
           $q.when(Database.findByPrimaryKey(primaryKey), function(result) {
@@ -108,13 +108,13 @@ angular.module('controllers', ['database'])
       // Execute when user clicks 'Sort by Population' button
       vm.sortByPopulationAsc = function() {
           vm.sortResults = {};
-          
+
           // Sort using Javascript
           var jsStart = new Date().getTime();
           $q.when(JSCityService.sortByPopulationAsc(), function(result) {
         	  vm.sortResults['js'] = {'elapsed': (new Date().getTime() - jsStart)};
           });
-          
+
           // Sort using Lovefield
           var lfStart = new Date().getTime();
           // Get database connection
@@ -125,13 +125,13 @@ angular.module('controllers', ['database'])
       // Click when user selects 'Complex Query' button
       vm.complexSearch = function() {
           vm.complexResults = {};
-          
+
           // Search using Javascript
           var jsStart = new Date().getTime();
           $q.when(JSCityService.complexSearch(vm.search), function(results) {
         	  vm.complexResults['js'] = {'elapsed': (new Date().getTime() - jsStart), 'results': results.length};
           });
-          
+
           // Search using Lovefield
           var lfStart = new Date().getTime();
           // Acquire database connection

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/lovefield/webjars/angular-material/0.11.0/angular-material.min.css">
     <link rel="stylesheet" href="/lovefield/webjars/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/lovefield/webjars/angular-ui-grid/3.0.6/ui-grid.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
     <link rel="stylesheet" href="css/app.css">
 
     <script src="/lovefield/webjars/angular/1.4.6/angular.min.js"></script>
@@ -29,22 +30,20 @@
 </head>
 <body layout="column" layout-fill>
     <header>
-        <md-toolbar class="md-menu-toolbar md-primary">
+        <md-toolbar class="md-whiteframe-glow-z1 md-menu-toolbar md-primary">
             <md-toolbar class="md-primary md-hue-2 toolbar">
-                <h3 class="toolbarText">Lovefield Example</h3>
+                <h4 class="toolbarText">Lovefield Example</h4>
             </md-toolbar>
-            <div layout="row">
-                <div>
-                    <md-menu-bar>
-                        <md-button ui-sref="summary">Summary</md-button>
-                        <md-button ui-sref="data">Data</md-button>
-                        <md-button ui-sref="try">Try it Out</md-button>
-                        <md-button ui-sref="compare">Compare</md-button>
-                    <md-menu-bar>
-                </div>
+            <div layout="row" class="menubar">
+                <md-menu-bar>
+                    <md-button ui-sref="summary">Summary</md-button>
+                    <md-button ui-sref="data">Data</md-button>
+                    <md-button ui-sref="try">Try it Out</md-button>
+                    <md-button ui-sref="compare">Compare</md-button>
+                <md-menu-bar>
             </div>
         </md-toolbar>
-        <md-divider></md-divider>
+
     </header>
        <md-content flex>
            <div ui-view></div>
@@ -53,7 +52,7 @@
            <md-toolbar class="md-primary md-hue-2 toolbar footer" layout-align="center center" layout="column">
                <span layout="row">
 	               <a href="https://twitter.com/plummer_mike"><i class="fa fa-twitter footer-icon"></i></a>
-	               <a href="https://github.com/mike-plummer/WeatherBrowser"><i class="fa fa-github footer-icon"></i></a>
+	               <a href="https://github.com/mike-plummer/LovefieldExample"><i class="fa fa-github footer-icon"></i></a>
 	               <a href="mailto:mike.plummer@objectpartners.com"><i class="fa fa-envelope footer-icon"></i></a>
                </span>
                <span>Coded with pride in Omaha, Nebraska</span>

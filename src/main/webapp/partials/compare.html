@@ -1,47 +1,60 @@
 <div layout="column" layout-margin>
-    <md-whiteframe class="md-whiteframe-z2">
+    <md-whiteframe class="md-whiteframe-z2" layout-padding>
 	    <h2>Sorting Performance</h2>
 	    <p>
-		    The following examples compare the relative performance of acquiring data then performing manual filtering & sorting in JavaScript compared to 
+		    The following examples compare the relative performance of acquiring data then performing manual filtering & sorting in JavaScript compared to
 		    allowing Lovefield to handle all of that for you.
 	    </p>
 	    <div layout="row">
-		    <md-card class="md-whiteframe-z4" flex="20">
-		        <md-toolbar class="md-primary md-hue-2 toolbar">
-		            <h5 class="toolbarText">Find by Primary Key</h5>
-		        </md-toolbar>
-		        <md-card-content>
-		           <md-button ng-click="Controller.findByPrimaryKey()" class="md-raised md-primary">Execute</md-button>
-		           <div layout="column" ng-show="Controller.findResults">
-		            <span><strong>JavaScript</strong> {{Controller.findResults.js.elapsed}} ms</span>
-		            <span><strong>Lovefield</strong> {{Controller.findResults.lf.elapsed}} ms</span>
-		           </div>
-		        </md-card-content>
-		    </md-card>
-		    
-		    <md-card class="md-whiteframe-z4" flex="20">
-		        <md-toolbar class="md-primary md-hue-2 toolbar">
-		            <h5 class="toolbarText">Sort by Population</h5>
-		        </md-toolbar>
-		        <md-card-content>
-		            <md-button ng-click="Controller.sortByPopulationAsc()" class="md-raised md-primary">Execute</md-button>
-		            <div layout="column" ng-show="Controller.sortResults">
-		             <span><strong>JavaScript</strong> {{Controller.sortResults.js.elapsed}} ms</span>
-		             <span><strong>Lovefield</strong> {{Controller.sortResults.lf.elapsed}} ms</span>
-		            </div>
-		        </md-card-content>
-		    </md-card>
-		    
+            <div layout="column" flex="20">
+    		    <md-card class="md-whiteframe-z4" flex>
+    		        <md-toolbar class="md-primary md-hue-2 toolbar">
+    		            <h5 class="toolbarText">Find by Primary Key</h5>
+    		        </md-toolbar>
+    		        <md-card-content>
+    		           <md-button ng-click="Controller.findByPrimaryKey()" class="md-raised md-primary">Execute</md-button>
+    		           <div layout="column" ng-show="Controller.findResults">
+    		            <span><strong>JavaScript</strong> {{Controller.findResults.js.elapsed}} ms</span>
+    		            <span><strong>Lovefield</strong> {{Controller.findResults.lf.elapsed}} ms</span>
+    		           </div>
+    		        </md-card-content>
+    		    </md-card>
+
+    		    <md-card class="md-whiteframe-z4" flex>
+    		        <md-toolbar class="md-primary md-hue-2 toolbar">
+    		            <h5 class="toolbarText">Sort by Population</h5>
+    		        </md-toolbar>
+    		        <md-card-content>
+    		            <md-button ng-click="Controller.sortByPopulationAsc()" class="md-raised md-primary">Execute</md-button>
+    		            <div layout="column" ng-show="Controller.sortResults">
+    		             <span><strong>JavaScript</strong> {{Controller.sortResults.js.elapsed}} ms</span>
+    		             <span><strong>Lovefield</strong> {{Controller.sortResults.lf.elapsed}} ms</span>
+    		            </div>
+    		        </md-card-content>
+    		    </md-card>
+            </div>
+
 		    <md-card class="md-whiteframe-z4" flex>
 		        <md-toolbar class="md-primary md-hue-2 toolbar">
 		            <h5 class="toolbarText">Complex Search</h5>
 		        </md-toolbar>
 		        <md-card-content>
 		            <form>
-		                <label for="city">City contains</label><input type="text" name="city" ng-model="Controller.search.city"/><br />
-		                <label for="state">State contains</label><input type="text" name="state" ng-model="Controller.search.state"/><br />
-		                <label for="popGt">Population between</label><input type="number" name="popGt" ng-model="Controller.search.popGt" max="{{search.popLt}}"/><label for="popLt"> and </label><input type="number" name="popLt" ng-model="Controller.search.popLt" min="{{search.popGt}}"/><br/>
-		                <md-button ng-click="Controller.complexSearch()" class="md-raised md-primary">Execute</md-button>
+                        <md-input-container>
+		                    <label>City contains</label><input type="text" name="city" ng-model="Controller.search.city"/>
+                        </md-input-container>
+                        <md-input-container>
+                            <label>State contains</label><input type="text" name="state" ng-model="Controller.search.state"/>
+                        </md-input-container>
+                        <span layout="row" layout-fill>
+                            <md-input-container layout-fill>
+                                <label>Population greater than</label><input type="number" name="popGt" ng-model="Controller.search.popGt" max="{{search.popLt}}"/>
+                            </md-input-container>
+                            <md-input-container layout-fill>
+                                <label>Population less than </label><input type="number" name="popLt" ng-model="Controller.search.popLt" min="{{search.popGt}}"/>
+                            </md-input-container>
+                        </span>
+                        <md-button ng-click="Controller.complexSearch()" class="md-raised md-primary">Execute</md-button>
 		            </form>
 		            <div layout="column" ng-show="Controller.complexResults">
 		                <span><strong>JavaScript</strong> {{Controller.complexResults.js.results}} results in {{Controller.complexResults.js.elapsed}} ms</span>

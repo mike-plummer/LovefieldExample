@@ -49,8 +49,8 @@ angular.module('services', ['ngResource'])
 	                // Iterate across all cities
 	                cities.forEach(function(city) {
 	              	  	// If city doesn't match any search criteria then skip
-	                    if ( (search.city && search.city !== '' && !city.name.contains(search.city)) ||
-	                         (search.state && search.state !== '' && !city.state.contains(search.state)) || 
+	                    if ( (search.city && search.city !== '' && city.name.indexOf(search.city) < 0) ||
+	                         (search.state && search.state !== '' && city.state.indexOf(search.state) < 0) || 
 	                         (!isNaN(search.popGt) && city.population < search.popGt) ||
 	                         (!isNaN(search.popLt) && city.population > search.popLt) ) {
 	                        return;

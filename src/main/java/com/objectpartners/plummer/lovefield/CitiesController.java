@@ -23,7 +23,7 @@ public class CitiesController {
     static {
         CSVFormat csvFileFormat = CSVFormat.DEFAULT.withHeader(new String[]{"name", "state", "population"});
 
-        try(InputStream input = CitiesController.class.getResourceAsStream("/cities.csv"); 
+        try(InputStream input = CitiesController.class.getResourceAsStream("/cities.csv");
             InputStreamReader inputStreamReader = new InputStreamReader(input);
             CSVParser csvParser = new CSVParser(inputStreamReader, csvFileFormat);) {
             AtomicLong idGenerator = new AtomicLong(0);
@@ -35,7 +35,7 @@ public class CitiesController {
             e.printStackTrace();
         } finally {}
     }
-    
+
     @RequestMapping(method = RequestMethod.GET)
     public Collection<City> list() {
         return CITIES;
