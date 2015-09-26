@@ -9,7 +9,7 @@ From a command prompt, enter the LovefieldExample directory you cloned and execu
 To quit, type `Ctrl-C` in the command prompt.
 
 ## Data
-City data: http://ezlocal.com/blog/post/Top-5000-US-Cities-by-Population.aspx
+City data acquired from https://panthema.net/2007/stx-exparser/csvdata/geonames-cities1000.csv
 
 ## Licensing
 This code is provided under the terms of the MIT license: basically you're free to do whatever you want with it, but no guarantees are made to its validity, stability, or safety. All works referenced by or utilized by this project are the property of their respective copyright holders and retain licensing that may be more restrictive.
