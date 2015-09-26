@@ -9,7 +9,7 @@
 			        <md-select name="grouping"
 			                ng-model="predicate.grouping"
 			                ng-required="$index !== 0">
-						<md-option ng-repeat="grouping in Controller.groupings" ng-value="grouping.groupingFunction">{{grouping.name}}</md-option>
+						<md-option ng-repeat="grouping in Controller.groupings" ng-value="grouping">{{grouping.name}}</md-option>
 					</md-select>
 				</md-input-container>
 
