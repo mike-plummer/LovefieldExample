@@ -4,6 +4,8 @@ This application shows off Google's Lovefield Javascript relational database.
 ## Description
 The application loads up a dataset of approximately 15,000 US cities including name, state, and population. The data is inserted into a Lovefield database so it can be queried. The 'Data' tab shows the entire contents of the database while the 'Try it Out' tab allows construction of complex custom queries to demonstrate the ability to quickly and easily filter data using Lovefield. Finally the 'Compare' tab allows you to execute three common operations using Lovefield and plain-old JavaScript to compare the execution time of each.
 
+For more info take a look at the blog post this example was written for: https://objectpartners.com/2015/10/08/relational-data-management-with-lovefield/
+
 ## Usage
 After cloning the repo, ensure you have Maven 3+ installed by running `mvn -version` in a command prompt. Grab it from [Apache](https://maven.apache.org/) if needed.
 
